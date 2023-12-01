@@ -1,0 +1,5 @@
+.git/
+venv/
+inputs/
+__pycache__/
+.idea/
