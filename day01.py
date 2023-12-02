@@ -18,6 +18,6 @@ def get_calibration_value(line, allow_replacements=False) -> int:
 
 
 if __name__ == '__main__':
-    lines = get_input(1, example=False).split("\n")
+    lines = get_input(1).split("\n")
     print(sum(map(get_calibration_value, lines)))  # Part 1
     print(sum(get_calibration_value(line, True) for line in lines))  # Part 2
