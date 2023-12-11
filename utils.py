@@ -51,10 +51,30 @@ class BaseGrid:
                 return line.index(c), y
         raise ValueError(f"Character {c} not found")
 
+    def finditer(self, c):
+        for y in range(self.height):
+            for x in range(self.width):
+                if self.grid[y][x] == c:
+                    yield x, y
+
     def set_position(self, x, y=None):
         if y is None:
             x, y = x
         self.pos = (x, y)
+
+    def row(self, y):
+        return self.grid[y]
+
+    def col(self, x):
+        return "".join(self.grid[y][x] for y in range(self.height))
+
+    @property
+    def rows(self):
+        yield from self.grid
+
+    @property
+    def cols(self):
+        return map(self.col, range(self.width))
 
     @property
     def width(self):
