@@ -1,6 +1,5 @@
 import re
 from functools import lru_cache
-from typing import Sequence
 
 from utils import get_input
 
@@ -15,18 +14,14 @@ def parse(line, unfold=False):
 
 
 @lru_cache(maxsize=None)
-def solve(line: str, groups: Sequence[int]):
+def solve(line, groups):
     if not groups:
-        if "#" not in line:
-            return 1
-        return 0
-
-    groups = list(groups)
+        return "#" not in line
 
     if not line:
         return 0
 
-    group = groups.pop(0)
+    group, *groups = groups
     pattern = r"(?=([?#]{" + str(group) + "}([?.]|$)))"
     matches = re.finditer(pattern, line)
 
