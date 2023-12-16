@@ -21,6 +21,8 @@ class BaseGrid:
     D8 = ["N", "E", "S", "W", "NE", "SE", "SW", "NW"]
 
     def __init__(self, grid, start=None, marker=None):
+        if isinstance(grid, str):
+            grid = grid.split("\n")
         self.grid = grid
         self.marker = marker
         self.pos = start
