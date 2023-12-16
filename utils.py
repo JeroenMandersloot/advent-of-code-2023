@@ -112,6 +112,10 @@ class BaseGrid:
             with contextlib.suppress(IndexError):
                 yield self.get_neighbour(x, y, d)
 
+    def __contains__(self, item):
+        x, y = item
+        return 0 <= x < self.width and 0 <= y < self.height
+
     def show(self):
         print(f"{self}\n")
 
