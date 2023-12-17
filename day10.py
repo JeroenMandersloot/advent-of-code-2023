@@ -60,8 +60,6 @@ def part2(grid):
         area = set()
         while queue:
             c = queue.pop(0)
-            if c == (27, 20):
-                print(grid[c])
             if c in area or c in seen:
                 continue
             if grid.is_border(*c):
@@ -85,8 +83,6 @@ def part2(grid):
                     slip = slip_queue.pop(0)
                     if slip in slips:
                         continue
-                    if slip == frozenset({(25, 18), (26, 18)}):
-                        print(slip)
                     slips.add(slip)
                     a, b = slip
                     a_neighbours = set(grid.get_neighbours(*a, diagonal=True))
@@ -126,5 +122,4 @@ if __name__ == '__main__':
         if pos not in path and pos not in inside:
             grid[pos] = "O"
     table = str.maketrans("FJ7L-|", "┏┛┓┗━┃")
-    print(str(grid).translate(table))
     print(len(inside))

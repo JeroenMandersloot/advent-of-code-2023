@@ -86,6 +86,24 @@ class BaseGrid:
     def height(self):
         return len(self.grid)
 
+    @staticmethod
+    def turn_left(d):
+        return {
+            "N": "W",
+            "W": "S",
+            "S": "E",
+            "E": "N",
+        }[d]
+
+    @staticmethod
+    def turn_right(d):
+        return {
+            "N": "E",
+            "E": "S",
+            "S": "W",
+            "W": "N",
+        }[d]
+
     def is_border(self, x, y):
         return x == 0 or y == 0 or x == self.width - 1 or y == self.height - 1
 
@@ -112,12 +130,18 @@ class BaseGrid:
             with contextlib.suppress(IndexError):
                 yield self.get_neighbour(x, y, d)
 
+    def show(self):
+        print(f"{self}\n")
+
     def __contains__(self, item):
         x, y = item
         return 0 <= x < self.width and 0 <= y < self.height
 
-    def show(self):
-        print(f"{self}\n")
+    def __hash__(self):
+        return hash(str(self))
+
+    def __iter__(self):
+        yield from self.rows
 
     def __str__(self):
         if self.pos and self.marker:
